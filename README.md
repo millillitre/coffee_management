@@ -21,20 +21,35 @@ We want to develop a Web application (Proof-of-Concept) for managing  INSA's cof
 
 We don't make the whole system so we don't manage the coffee machine itself, there's no real point in adding a microservice for that.
 
-1. Recording of cup quantities.
-2. Presence analysis.
-3. LEDs management.
-4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs
+1. Recording of cup quantities. --> ML
+2. Presence analysis. --> ML
+3. LEDs management. --> ...
+4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs --> Amalia
     - BDD: name, building, condition, date last visit
 5. (*Other notifications (software): deposit of a ticket to the admin, campus applications, screens at the entrance of the departments*)
 
 ## Database architecture
 
-- A table `machine`: storage of the static infos of the coffee machines
-- A table `sensors`: data storage for the sensors (Do wee need to make tables or not?)
-- A table `actions_history`: storage of the actionned that have been made before
-- A table `actuators`?
-- (A table `notifications`: storage of the notifications that have been sent (admin, screens))
+- A table `machine`: storage of the static infos of the coffee machines:
+  - machine_id
+  - building
+  - condition :'operational', 'degraded', 'out_of_order'
+  - last_visit
+- A table `cup_sensor`: data storage for the cup sensor:
+  - sensor_id
+  - machine_id (foreign key)
+  - value
+  - timestamp
+- A table `presence_sensor`: data storage for the presence sensor:
+  - sensor_id
+  - machine_id (foreign key)
+  - value
+  - timestamp
+- A table `actions_history`: storage of the actions that have been made before:
+  - actuator_id
+  - status :'green', 'blue', 'red', 'orange', 'off',
+  - timestamp
+- *(A table `notifications`: storage of the notifications that have been sent (admin, screens))*
 
 ## Reporting
 
