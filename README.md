@@ -25,3 +25,4 @@ We don't make the whole system so we don't manage the coffee machine itself, the
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs
     - BDD: name, building, condition, date last visit
 5. (*Other notifications (software): deposit of a ticket to the admin, campus applications, screens at the entrance of the departments*)
+6. test
