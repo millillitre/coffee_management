@@ -10,9 +10,13 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: ["main"]
+    paths:
+      - "PresenceMS/**"
+      - "!.github/workflows/presence-ci.yml"
   pull_request:
-    branches: ["main"]
+    paths:
+      - "PresenceMS/**"
+      - ".github/workflows/presence-ci.yml"
 
 jobs:
   build:
@@ -26,4 +30,6 @@ jobs:
           distribution: "temurin"
           cache: maven
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: |
+          cd PresenceMS
+          cd mvn -B package --file pom.xml
