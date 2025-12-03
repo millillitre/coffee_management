@@ -11,12 +11,12 @@ name: Java CI with Maven
 on:
   push:
     paths:
-      - "CupMS/**"
-      - "!.github/workflows/cup-ci.yml"
+      - "OrchestratorMS/**"
+      - "!.github/workflows/orchestrator-ci.yml"
   pull_request:
     paths:
-      - "CupMS/**"
-      - ".github/workflows/cup-ci.yml"
+      - "OrchestratorMS/**"
+      - ".github/workflows/orchestrator-ci.yml"
 
 jobs:
   build:
@@ -31,5 +31,5 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: |
-          cd CupMS
+          cd OrchestratorMS
           cd mvn -B package --file pom.xml
