@@ -12,7 +12,7 @@ on:
   push:
     paths:
       - "OrchestratorMS/**"
-      - "!.github/workflows/orchestrator-ci.yml"
+      - ".github/workflows/orchestrator-ci.yml"
   pull_request:
     paths:
       - "OrchestratorMS/**"

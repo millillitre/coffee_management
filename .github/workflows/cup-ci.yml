@@ -12,7 +12,7 @@ on:
   push:
     paths:
       - "CupMS/**"
-      - "!.github/workflows/cup-ci.yml"
+      - ".github/workflows/cup-ci.yml"
   pull_request:
     paths:
       - "CupMS/**"

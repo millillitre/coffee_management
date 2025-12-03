@@ -12,7 +12,7 @@ on:
   push:
     paths:
       - "PresenceMS/**"
-      - "!.github/workflows/presence-ci.yml"
+      - ".github/workflows/presence-ci.yml"
   pull_request:
     paths:
       - "PresenceMS/**"
