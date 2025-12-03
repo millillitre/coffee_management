@@ -25,7 +25,7 @@ We don't make the whole system so we don't manage the coffee machine itself, the
 2. Presence analysis. --> ML
 3. LEDs management. --> ...
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs --> Amalia
-    - BDD: name, building, condition, date last visit
+    - BDD: name, building, condition, date last visit ---> ML
 5. (*Other notifications (software): deposit of a ticket to the admin, campus applications, screens at the entrance of the departments*)
 
 ## Database architecture
@@ -46,7 +46,8 @@ We don't make the whole system so we don't manage the coffee machine itself, the
   - value
   - timestamp
 - A table `actions_history`: storage of the actions that have been made before:
-  - actuator_id
+  - action_id
+  - machine_id (foreign key)
   - status :'green', 'blue', 'red', 'orange', 'off',
   - timestamp
 - *(A table `notifications`: storage of the notifications that have been sent (admin, screens))*
