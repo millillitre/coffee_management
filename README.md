@@ -22,6 +22,11 @@ We want to develop a Web application (Proof-of-Concept) for managing  INSA's cof
 We don't make the whole system so we don't manage the coffee machine itself, there's no real point in adding a microservice for that.
 
 1. Recording of cup quantities. --> ML
+
+    ``` bash
+    curl -X POST "http://localhost:8081/api/cup-Ms?machineId=1&value=10" #pour ajouter uen valeur de nombre de cup à la machine d'id 1 (GEI)
+    ```
+
 2. Presence analysis. --> ML
 3. LEDs management. --> ...
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs --> Amalia
@@ -35,11 +40,36 @@ We don't make the whole system so we don't manage the coffee machine itself, the
   - building
   - condition :'operational', 'degraded', 'out_of_order'
   - last_visit
+
+``` SQL
+-- Table `machine`
+CREATE TABLE IF NOT EXISTS machine (
+    machine_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    building VARCHAR(50) NOT NULL,
+    status ENUM('operational', 'degraded', 'out_of_order') NOT NULL,
+    last_visit DATETIME
+);
+```
+
 - A table `cup_sensor`: data storage for the cup sensor:
   - sensor_id
   - machine_id (foreign key)
   - value
   - timestamp
+
+``` SQL
+
+-- Table `cup_sensor`
+CREATE TABLE IF NOT EXISTS cup_sensor (
+    sensor_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    machine_id BIGINT NOT NULL,
+    value INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    FOREIGN KEY (machine_id) REFERENCES machine(machine_id)
+);
+
+```
+
 - A table `presence_sensor`: data storage for the presence sensor:
   - sensor_id
   - machine_id (foreign key)
