@@ -23,6 +23,12 @@ We don't make the whole system so we don't manage the coffee machine itself, the
 
 1. Recording of cup quantities. --> ML
 2. Presence analysis. --> ML
+
+    ``` bash
+    curl -X POST "http://localhost:8082/api/presence-Ms?machineId=1&value=3" # Enregistrer une valeur
+    curl http://localhost:8082/api/presence-Ms/history/1 # Récupérer l'historique
+    ```
+
 3. LEDs management. --> ...
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs --> Amalia
     - BDD: name, building, condition, date last visit ---> ML
@@ -45,6 +51,17 @@ We don't make the whole system so we don't manage the coffee machine itself, the
   - machine_id (foreign key)
   - value
   - timestamp
+
+``` SQL
+  CREATE TABLE IF NOT EXISTS presence_sensor (
+    sensor_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    machine_id BIGINT NOT NULL,
+    value INT NOT NULL,  -- Nombre de personnes détectées
+    timestamp DATETIME NOT NULL,
+    FOREIGN KEY (machine_id) REFERENCES machine(machine_id)
+);
+```
+
 - A table `actions_history`: storage of the actions that have been made before:
   - action_id
   - machine_id (foreign key)
