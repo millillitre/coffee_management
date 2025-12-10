@@ -25,15 +25,4 @@ public class CupMsController {
 	public CupMs getLatestCupMsData(@PathVariable Long machineId) throws SQLException {
 		return cupMsService.getLatestCupMsData(machineId);
 	}
-
-	// Idée pour l'orchestrateur: Vérifier si le stock de tasses est critique
-	/*
-	 * // Vérifier l'état du stock de tasses
-	 * 
-	 * @GetMapping("/status/{machineId}")
-	 * public String checkCupStatus(@PathVariable Long machineId) throws
-	 * SQLException {
-	 * return cupMsService.checkCupStatus(machineId);
-	 * }
-	 */
 }

@@ -24,23 +24,4 @@ public class CupMsService {
     public CupMs getLatestCupMsData(Long machineId) throws SQLException {
         return cupMsRepository.findLatestByMachineId(machineId);
     }
-
-    // Idée pour l'orchestrateur: Vérifier si le stock de tasses est critique
-    /*
-     * public String checkCupStatus(Long machineId) throws SQLException {
-     * List<CupMs> latestData =
-     * cupMsRepository.findByMachineIdOrderByTimestampDesc(machineId);
-     * if (latestData.isEmpty()) {
-     * return "off";
-     * }
-     * Integer latestValue = latestData.get(0).getValue();
-     * if (latestValue <= 0) {
-     * return "red";
-     * } else if (latestValue < 5) {
-     * return "blue";
-     * } else {
-     * return "green";
-     * }
-     * }
-     */
 }
