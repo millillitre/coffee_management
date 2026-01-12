@@ -15,13 +15,13 @@ public class OrchestratorMsService {
     }
 
     // Enregistrer ou mettre à jour la valeur du capteur
-    public OrchestratorMs saveOrUpdateOrchestratorMsData(Long machineId, Integer value) throws SQLException {
-        OrchestratorMs OrchestratorMs = new OrchestratorMs(machineId, value, LocalDateTime.now());
+    public OrchestratorMs saveOrUpdateOrchestratorMsData() throws SQLException {
+        OrchestratorMs OrchestratorMs = new OrchestratorMs();
         return OrchestratorMsRepository.saveOrUpdate(OrchestratorMs);
     }
 
     // RéOrchestratorérer la dernière valeur pour une machine
-    public OrchestratorMs getLatestOrchestratorMsData(Long machineId) throws SQLException {
-        return OrchestratorMsRepository.findLatestByMachineId(machineId);
+    public OrchestratorMs getLatestOrchestratorMsData() throws SQLException {
+        return OrchestratorMsRepository.findLatestByMachineId();
     }
 }

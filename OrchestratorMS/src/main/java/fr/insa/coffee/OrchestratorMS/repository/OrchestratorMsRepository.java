@@ -1,6 +1,6 @@
 package fr.insa.coffee.OrchestratorMS.repository;
 
-import fr.insa.coffee.OrchestratorMS.util.DatabaseConnection;
+import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.utils.*;
@@ -8,11 +8,14 @@ import java.utils.*;
 @Repository
 public class OrchestratorMsRepository {
 
+    @Autowired
+    private DataSource dataSource;
+
     // Recuperer la derniere liste a jour des id de machines
     public List<Long> getMachineIds() throws SQLException {
         List<Long> listOfIds = new ArrayList<>();
         String checkSql = "SELECT machine_id FROM machine";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dataSource.getConnection();
                 PreparedStatement checkStmt = conn.prepareStatement(checkSql);
                 ResultSet rs = checkStmt.executeQuery()) {
             while (rs.next()) {
@@ -26,7 +29,7 @@ public class OrchestratorMsRepository {
     public void updateActionHistory(Long machineId,long actionId,String newStatus,LocalDateTime timeStamp) throws SQLException {
         // Verification que il y a bien changement d'etat
         String checkSql = "SELECT status FROM action_history WHERE machine_id= AND action_id= ORDER BY timestamp DESC LIMIT 1";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = dataSource.getConnection();
                 PreparedStatement checkStmt = conn.prepareStatement(checkSql);
                 ResultSet rs = checkStmt.executeQuery()) {
             if (rs.next()){
