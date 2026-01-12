@@ -14,14 +14,4 @@ public class OrchestratorMsService {
         this.OrchestratorMsRepository = OrchestratorMsRepository;
     }
 
-    // Enregistrer ou mettre à jour la valeur du capteur
-    public OrchestratorMs saveOrUpdateOrchestratorMsData(Long machineId, Integer value) throws SQLException {
-        OrchestratorMs OrchestratorMs = new OrchestratorMs(machineId, value, LocalDateTime.now());
-        return OrchestratorMsRepository.saveOrUpdate(OrchestratorMs);
-    }
-
-    // RéOrchestratorérer la dernière valeur pour une machine
-    public OrchestratorMs getLatestOrchestratorMsData(Long machineId) throws SQLException {
-        return OrchestratorMsRepository.findLatestByMachineId(machineId);
-    }
 }
