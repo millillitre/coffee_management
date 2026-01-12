@@ -19,12 +19,13 @@ We want to develop a Web application (Proof-of-Concept) for managing  INSA's cof
 
 ![Alt text](docs/Architecture.png "Project Architecture")
 
-We don't make the whole system so we don't manage the coffee machine itself, there's no real point in adding a microservice for that.
+We don't make the whole system so we don't manage the coffee machine itself, there's no real point in adding a microservice for that. If we wanted to do something more proper, we would had a microservice for machine instead of using the orchestrator as a way to obtain teh machines from the database.
 
 1. Recording of cup quantities. --> ML
 
     ``` bash
     curl -X POST "http://localhost:8081/api/cup-Ms?machineId=1&value=10" #pour ajouter uen valeur de nombre de cup à la machine d'id 1 (GEI)
+    curl http://localhost:8081/api/cup-Ms/1
     ```
 
 2. Presence analysis. --> ML
@@ -34,7 +35,7 @@ We don't make the whole system so we don't manage the coffee machine itself, the
     curl http://localhost:8082/api/presence-Ms/history/1 # Récupérer l'historique
     ```
 
-3. LEDs management. --> ...
+3. LEDs management. --> ML
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs --> Amalia
     - BDD: name, building, condition, date last visit ---> ML
 5. (*Other notifications (software): deposit of a ticket to the admin, campus applications, screens at the entrance of the departments*)
@@ -64,7 +65,6 @@ CREATE TABLE IF NOT EXISTS machine (
   - timestamp
 
 ``` SQL
-
 -- Table `cup_sensor`
 CREATE TABLE IF NOT EXISTS cup_sensor (
     sensor_id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -73,7 +73,6 @@ CREATE TABLE IF NOT EXISTS cup_sensor (
     timestamp DATETIME NOT NULL,
     FOREIGN KEY (machine_id) REFERENCES machine(machine_id)
 );
-
 ```
 
 - A table `presence_sensor`: data storage for the presence sensor:
@@ -97,7 +96,24 @@ CREATE TABLE IF NOT EXISTS cup_sensor (
   - machine_id (foreign key)
   - status :'green', 'blue', 'red', 'orange', 'off',
   - timestamp
+
+``` SQL
+  CREATE TABLE IF NOT EXISTS actions_history (
+      action_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+      machine_id BIGINT NOT NULL,
+      status ENUM('green', 'blue', 'red', 'orange', 'off') NOT NULL,
+      timestamp DATETIME NOT NULL,
+      FOREIGN KEY (machine_id) REFERENCES machine(machine_id)
+  );
+```
+
 - *(A table `notifications`: storage of the notifications that have been sent (admin, screens))*
+
+## Discovery and configuration
+
+### Discovery
+
+1. Launch [DiscoveryMsApplication.java](/DiscoveryMS/src/main/java/fr/insa/coffee/DiscoveryMS/DiscoveryMsApplication.java)
 
 ## Reporting
 
