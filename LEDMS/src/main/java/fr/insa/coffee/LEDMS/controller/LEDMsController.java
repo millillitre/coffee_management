@@ -26,4 +26,14 @@ public class LEDMsController {
 	public LEDMS getLatestLEDMSsata(@PathVariable Long machineId) throws SQLException {
 		return LEDService.getLatestLEDMsData(machineId);
 	}
+
+	// Pour que l'orchestrateur puisse mettre à jour le statut de la LED en fonction
+	// des capteurs
+	@PostMapping("/update")
+	public LEDMS updateLEDStatusFromSensors(
+			@RequestParam Long machineId,
+			@RequestParam int cupQuantity,
+			@RequestParam int presenceValue) throws SQLException {
+		return LEDService.updateLEDStatusFromSensors(machineId, cupQuantity, presenceValue);
+	}
 }

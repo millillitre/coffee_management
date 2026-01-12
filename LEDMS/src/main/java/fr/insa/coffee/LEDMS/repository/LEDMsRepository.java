@@ -1,7 +1,6 @@
 
 package fr.insa.coffee.LEDMS.repository;
 
-import javax.crypto.Mac;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,9 +9,6 @@ import fr.insa.coffee.LEDMS.model.LEDMS;
 import fr.insa.coffee.LEDMS.model.LEDStatus;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.util.*;
-
 @Repository
 public class LEDMsRepository {
 

@@ -20,8 +20,21 @@ public class LEDMsService {
         return LEDMsRepository.saveOrUpdate(LEDMS);
     }
 
-    // RéLEDérer la dernière valeur pour une machine
+    // Récupérer la dernière valeur pour une machine
     public LEDMS getLatestLEDMsData(Long machineId) throws SQLException {
         return LEDMsRepository.findLatestByMachineId(machineId);
+    }
+
+    // Mettre à jour le statut de la LED en fonction des données des capteurs
+    public LEDMS updateLEDStatusFromSensors(Long machineId, int cupQuantity, int presenceValue) throws SQLException {
+        LEDStatus newStatus;
+        if (cupQuantity <= 0) {
+            newStatus = LEDStatus.BLUE; // Plus de gobelets : service dégradé
+        } else if (presenceValue > 15) {
+            newStatus = LEDStatus.ORANGE; // Trop de monde
+        } else {
+            newStatus = LEDStatus.GREEN; // Tout est normal alors LED verte
+        }
+        return saveOrUpdateLEDMsData(machineId, newStatus);
     }
 }

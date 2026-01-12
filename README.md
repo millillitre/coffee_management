@@ -4,8 +4,8 @@ We want to develop a Web application (Proof-of-Concept) for managing  INSA's cof
 
 | Sensors | Actuators | Specificities | (Add'on) |
 | ------- | --------- | ------------- | --------- |
-| Cup quantity | A LED in front of each departments | green : ok, blue: degraded service (no more cup), red: out of order | (Infos can also be communicated throw campus application or screens presents in the hall of the departments) |
-| Presence | // |  orange : too much people | // |
+| Cup quantity | A LED in front of each departments | green : ok, blue: degraded service (no more cup) | (Infos can also be communicated throw campus application or screens presents in the hall of the departments) |
+| Presence |  |  orange : too much people | // |
 
 ## Asked work
 
@@ -36,6 +36,12 @@ We don't make the whole system so we don't manage the coffee machine itself, the
     ```
 
 3. LEDs management.
+
+    ``` bash
+    curl -X POST "http://localhost:8083/api/led-Ms/update?machineId=1&cupQuantity=5&presenceValue=15"
+    curl http://localhost:8083/api/led-Ms/1"
+    ```
+
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs
     - BDD: name, building, condition, date last visit
 
