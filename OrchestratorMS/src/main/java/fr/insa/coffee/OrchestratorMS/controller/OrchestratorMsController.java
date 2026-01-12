@@ -2,7 +2,6 @@ package fr.insa.coffee.OrchestratorMS.controller;
 
 import fr.insa.coffee.OrchestratorMS.service.OrchestratorMsService;
 import org.springframework.web.bind.annotation.*;
-import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/api/Orchestrator-Ms")
