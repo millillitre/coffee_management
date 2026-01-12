@@ -11,17 +11,5 @@ public class OrchestratorMsController {
 
 	public OrchestratorMsController(OrchestratorMsService OrchestratorMsService) {
 		this.OrchestratorMsService = OrchestratorMsService;
-	}
-
-	// Enregistrer ou mettre à jour une valeur de capteur
-	@PostMapping
-	public OrchestratorMs saveOrUpdateOrchestratorMsData(@RequestParam Long machineId, @RequestParam Integer value) throws SQLException {
-		return OrchestratorMsService.saveOrUpdateOrchestratorMsData(machineId, value);
-	}
-
-	// RéOrchestratorérer la dernière valeur pour une machine
-	@GetMapping("/{machineId}")
-	public OrchestratorMs getLatestOrchestratorMsData(@PathVariable Long machineId) throws SQLException {
-		return OrchestratorMsService.getLatestOrchestratorMsData(machineId);
-	}
+	}	
 }
