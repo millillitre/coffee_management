@@ -38,7 +38,6 @@ We don't make the whole system so we don't manage the coffee machine itself, the
 3. LEDs management.
 4. Machine network status (Orchestrator): analysis of cup presence and level and sending to LEDs
     - BDD: name, building, condition, date last visit
-5. (*Other notifications (software): deposit of a ticket to the admin, campus applications, screens at the entrance of the departments*)
 
 ## Database architecture
 
@@ -107,8 +106,6 @@ CREATE TABLE IF NOT EXISTS cup_sensor (
   );
 ```
 
-- *(A table `notifications`: storage of the notifications that have been sent (admin, screens))*
-
 ## Discovery and configuration
 
 ### Discovery service (Eureka)
@@ -129,11 +126,3 @@ It allows microservices to register and discover each other. It starts after the
    - [Cup application](/CupMS/src/main/java/fr/insa/coffee/CupMS/CupMsApplication.java)
    - [Presence Application](/PresenceMS/src/main/java/fr/insa/coffee/PresenceMS/PresenceMsApplication.java)
    - [LED Application](/LEDMS/src/main/java/fr/insa/coffee/LEDMS/LEDMsApplication.java)
-
-## Reporting
-
-- To return on 21/01
-- Add:
-  - [ ] Architecture diagram (microservices)
-  - [ ] Class Diagram
-  - [ ] Use case diagram
