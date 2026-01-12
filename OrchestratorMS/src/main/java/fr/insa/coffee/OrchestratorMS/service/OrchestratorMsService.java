@@ -1,0 +1,27 @@
+package fr.insa.coffee.OrchestratorMS.service;
+
+import fr.insa.coffee.OrchestratorMS.model.OrchestratorMs;
+import fr.insa.coffee.OrchestratorMS.repository.OrchestratorMsRepository;
+import org.springframework.stereotype.Service;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
+@Service
+public class OrchestratorMsService {
+    private final OrchestratorMsRepository OrchestratorMsRepository;
+
+    public OrchestratorMsService(OrchestratorMsRepository OrchestratorMsRepository) {
+        this.OrchestratorMsRepository = OrchestratorMsRepository;
+    }
+
+    // Enregistrer ou mettre à jour la valeur du capteur
+    public OrchestratorMs saveOrUpdateOrchestratorMsData(Long machineId, Integer value) throws SQLException {
+        OrchestratorMs OrchestratorMs = new OrchestratorMs(machineId, value, LocalDateTime.now());
+        return OrchestratorMsRepository.saveOrUpdate(OrchestratorMs);
+    }
+
+    // RéOrchestratorérer la dernière valeur pour une machine
+    public OrchestratorMs getLatestOrchestratorMsData(Long machineId) throws SQLException {
+        return OrchestratorMsRepository.findLatestByMachineId(machineId);
+    }
+}
