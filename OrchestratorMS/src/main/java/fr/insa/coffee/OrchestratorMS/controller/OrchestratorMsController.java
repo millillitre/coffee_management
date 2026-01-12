@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 @RestController
 @RequestMapping("/api/Orchestrator-Ms")
-public class OrchstratorMsController {
+public class OrchestratorMsController {
 	private final OrchestratorMsService OrchestratorMsService;
 
 	public OrchestratorMsController(OrchestratorMsService OrchestratorMsService) {
