@@ -25,6 +25,7 @@ We don't make the whole system so we don't manage the coffee machine itself, the
 
     ``` bash
     curl -X POST "http://localhost:8081/api/cup-Ms?machineId=1&value=10" #pour ajouter uen valeur de nombre de cup à la machine d'id 1 (GEI)
+    curl http://localhost:8081/api/cup-Ms/1
     ```
 
 2. Presence analysis. --> ML
@@ -107,6 +108,12 @@ CREATE TABLE IF NOT EXISTS cup_sensor (
 ```
 
 - *(A table `notifications`: storage of the notifications that have been sent (admin, screens))*
+
+## Discovery and configuration
+
+### Discovery
+
+1. Launch [DiscoveryMsApplication.java](/DiscoveryMS/src/main/java/fr/insa/coffee/DiscoveryMS/DiscoveryMsApplication.java)
 
 ## Reporting
 
