@@ -2,7 +2,7 @@ package fr.insa.coffee.OrchestratorMS.model;
 
 public class OrchestratorMs {
 
-    public OrchestratorMS() {
+    public OrchestratorMs() {
 
     }
 }
