@@ -32,3 +32,4 @@ build/
 
 # Fichiers de configuration locale
 .env
+.gitattributes

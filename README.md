@@ -116,11 +116,11 @@ CREATE TABLE IF NOT EXISTS cup_sensor (
 
 ### Discovery service (Eureka)
 
-The discovery service centralises and provides external configurations (application.yml, application.properties files, etc.) for all microservices and the discovery service. It must start first, as other services (including the discovery service) depend on it to retrieve their configuration.
+It acts as a service registry where all microservices register themselves upon startup. Microservices register their network locations (IP, port) with Eureka, and other services query Eureka to discover and communicate with each other dynamically. It eliminates hardcoded URLs, enabling scalability and resilience. Without Eureka, microservices would need to manually track each other’s locations, which is impractical in dynamic environments. It must start first because other services depend on it to register and discover each other.
 
 ### Configuration service
 
-It allows microservices to register and discover each other. It starts after the Config Server, as it needs to retrieve its own configuration (ports and cluster settings).
+It centralizes externalized configuration (application.properties) for all microservices. It stores configuration files in a [Git repository](https://github.com/millillitre/coffee_management/tree/main/config).Microservices fetch their configurations from this server at startup and it supports environment-specific configurations. It avoids duplicating configuration files across services and enables dynamic updates without redeploying services. It starts after the Discovery Service (Eureka) because it may need to register itself with Eureka for high availability.
 
 ## Usage
 
