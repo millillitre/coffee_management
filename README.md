@@ -1,5 +1,7 @@
 # Automation of the INSA's coffee management
 
+Report is in here: [/docs/DACOSTABENTO_MAGANA_5ISS_REPORT.pdf](/docs/DACOSTABENTO_MAGANA_5ISS_REPORT.pdf).
+
 We want to develop a Web application (Proof-of-Concept) for managing  INSA's coffee machines. Through software services (microservices), the application retrieves data of sensors (temperature, presence, ...), and according to the values of the retrieved data, actions on actuators can be triggered. This application must allow:
 
 | Sensors | Actuators | Specificities | (Add'on) |
